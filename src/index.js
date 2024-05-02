@@ -7,7 +7,7 @@ import 'dotenv/config'
 const app = express();
 const port = process.env.PORT || 3000;
 
-var whitelist = ['http://localhost:59444', 'http://localhost:3000', 'https://back-end-angular-app.netlify.app'];
+var whitelist = ['http://localhost:59444', 'http://localhost:3000', 'https://main--back-end-angular-app.netlify.app/', 'https://chainez-mouelhi.github.io/Angular_localisation_app/'];
 
 var corsOptions = {
   origin: function (origin, callback) {
