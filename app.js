@@ -11,11 +11,15 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token,Origin, X-Requested-With, Content, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
-  });
+});
 
-  
-  app.use((req, res) => {
+app.post('/history/add', (req, res) => {
+    // Code pour enregistrer les données reçues dans la requête
+    res.status(200).json({ message: "Data saved successfully!" });
+});
+
+app.use((req, res) => {
     res.json({ message: "UPDATE !" }); 
- });
+});
 
 module.exports = app;
