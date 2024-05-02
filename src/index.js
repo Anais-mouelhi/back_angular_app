@@ -4,11 +4,10 @@ import { connectToDatabase } from './lib/mongodb.js';
 import historyRoutes from './routes/historyRoutes.js';
 import 'dotenv/config'
 
-
 const app = express();
 const port = process.env.PORT || 3000;
 
-var whitelist = ['http://localhost:59444', 'http://localhost:3000'];
+var whitelist = ['http://localhost:59444', 'http://localhost:3000', 'https://back-end-angular-app.netlify.app'];
 
 var corsOptions = {
   origin: function (origin, callback) {
@@ -26,10 +25,8 @@ app.use(express.json());
 
 app.use('/api/history', historyRoutes);
 
-
 const startServer = async () => {
   try {
-
     await connectToDatabase();
     console.log("Connected to MongoDB");
 
@@ -38,10 +35,8 @@ const startServer = async () => {
     });
 
   } catch (error) {
-
     console.error("Failed to connect to MongoDB", error);
     process.exit(1); // Arrête le processus en cas d'échec de la connexion
-
   }
 };
 
