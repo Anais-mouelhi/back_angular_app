@@ -14,12 +14,21 @@ app.use((req, res, next) => {
     next();
 });
 
-// Proxy pour rediriger les demandes vers l'API OpenWeather
+// Proxy pour rediriger les demandes météorologiques vers l'API OpenWeather
 app.use('/weather', createProxyMiddleware({
     target: 'https://api.openweathermap.org',
     changeOrigin: true,
     pathRewrite: {
         '^/weather': '/data/2.5/weather'
+    }
+}));
+
+// Proxy pour rediriger les demandes d'indice de pollution de l'air vers l'API OpenWeather
+app.use('/air_pollution', createProxyMiddleware({
+    target: 'https://api.openweathermap.org',
+    changeOrigin: true,
+    pathRewrite: {
+        '^/air_pollution': '/data/2.5/air_pollution/forecast'
     }
 }));
 
