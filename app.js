@@ -1,4 +1,5 @@
 const express = require('express');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 
@@ -12,6 +13,15 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
+
+// Proxy pour rediriger les demandes vers l'API OpenWeather
+app.use('/weather', createProxyMiddleware({
+    target: 'https://api.openweathermap.org',
+    changeOrigin: true,
+    pathRewrite: {
+        '^/weather': '/data/2.5/weather'
+    }
+}));
 
 app.post('/history/add', (req, res) => {
     // Code pour enregistrer les données reçues dans la requête
