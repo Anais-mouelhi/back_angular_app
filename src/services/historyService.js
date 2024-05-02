@@ -8,12 +8,12 @@ export const HistoryService = {
     try {
         // Appel au service météo pour enrichir les données
         const newRecord = new HistoryModel({
-        email,
-        lat,
-        lon,
-        city,
-        weather,
-        airQuality
+          email,
+          lat,
+          lon,
+          city,
+          weather,
+          airQuality
         });
         await newRecord.save();
         return newRecord;
@@ -27,7 +27,7 @@ export const HistoryService = {
   },
 
   async deleteHistory(email) {
-    return HistoryModel.deleteMany({email})
+    return HistoryModel.deleteMany({email});
   }
 
-}
+};
