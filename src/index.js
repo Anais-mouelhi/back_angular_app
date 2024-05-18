@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 const whitelist = [
   'http://localhost:59444', 
   'http://localhost:3000', 
-  'https://main--back-end-angular-app.netlify.app', 
+  'https://back-angular-app.vercel.app/api/history', 
   'https://chainez-mouelhi.github.io',
   'https://chainez-mouelhi.github.io/Angular_localisation_app/'
 ];
