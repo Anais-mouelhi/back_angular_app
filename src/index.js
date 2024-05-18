@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 const whitelist = [
   'http://localhost:59444',
   'http://localhost:3000',
-  'https://back-angular-app.vercel.app',
+  'https://back-angular-e157d9448e88.herokuapp.com/',
   'https://chainez-mouelhi.github.io',
   'https://chainez-mouelhi.github.io/Angular_localisation_app/'
 ];
