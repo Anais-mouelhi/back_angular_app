@@ -1,5 +1,5 @@
-import ConsentModel from '../../src/models/consentModel';
-import { HistoryService } from '../services/historyService.js';
+import ConsentModel from '../models/consentModel.js';
+import { HistoryService } from '../services/HistoryService.js';
 import { ConsentService } from '../services/consentService.js';
 
 export const createHistory = async (req, res) => {
