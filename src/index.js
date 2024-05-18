@@ -2,27 +2,33 @@ import express from 'express';
 import cors from 'cors';
 import { connectToDatabase } from './lib/mongodb.js';
 import historyRoutes from './routes/historyRoutes.js';
-import 'dotenv/config'
+import 'dotenv/config';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-var whitelist = ['http://localhost:59444', 'http://localhost:3000', 'https://main--back-end-angular-app.netlify.app/', 'https://chainez-mouelhi.github.io/Angular_localisation_app/'];
+const whitelist = [
+  'http://localhost:59444', 
+  'http://localhost:3000', 
+  'https://main--back-end-angular-app.netlify.app', 
+  'https://chainez-mouelhi.github.io',
+  'https://chainez-mouelhi.github.io/Angular_localisation_app/'
+];
 
-var corsOptions = {
+const corsOptions = {
   origin: function (origin, callback) {
+    console.log("Origin:", origin);
     if (whitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true)
+      callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'))
+      console.error(`Not allowed by CORS: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
     }
   }
 };
 
 app.use(cors(corsOptions));
-
 app.use(express.json());
-
 app.use('/api/history', historyRoutes);
 
 const startServer = async () => {
@@ -31,21 +37,18 @@ const startServer = async () => {
     console.log("Connected to MongoDB");
 
     app.listen(port, () => {
-        console.log(`Server running on port ${port}`);
+      console.log(`Server running on port ${port}`);
     });
-
   } catch (error) {
     console.error("Failed to connect to MongoDB", error);
-    process.exit(1); // Arrête le processus en cas d'échec de la connexion
+    process.exit(1);
   }
 };
 
-// Middleware pour gérer les erreurs 404
 app.use((req, res, next) => {
   res.status(404).send("Sorry, can't find that!");
 });
 
-// Middleware pour gérer les erreurs 500
 app.use((err, req, res, next) => {
   console.error(err.message);
   console.error(err.stack);
