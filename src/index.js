@@ -11,7 +11,6 @@ const whitelist = [
   'http://localhost:59444', 
   'http://localhost:3000', 
   'https://back-angular-app.vercel.app/api/history', 
-  'https://chainez-mouelhi.github.io',
   'https://chainez-mouelhi.github.io/Angular_localisation_app/'
 ];
 
