@@ -22,7 +22,8 @@ var corsOptions = {
     } else {
       callback(new Error('Not allowed by CORS'))
     }
-  }
+  },
+  credentials: true // Autorise les cookies à être inclus dans les requêtes CORS
 };
 
 app.use(cors(corsOptions));
@@ -31,22 +32,18 @@ app.use(express.json());
 
 app.use('/api/history', historyRoutes);
 
-
 const startServer = async () => {
   try {
-
     await connectToDatabase();
     console.log("Connected to MongoDB");
 
     app.listen(port, () => {
-        console.log(`Server running on port ${port}`);
+      console.log(`Server running on port ${port}`);
     });
 
   } catch (error) {
-
     console.error("Failed to connect to MongoDB", error);
     process.exit(1); // Arrête le processus en cas d'échec de la connexion
-
   }
 };
 
