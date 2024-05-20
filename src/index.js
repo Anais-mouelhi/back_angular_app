@@ -3,7 +3,6 @@ import cors from 'cors';
 import { connectToDatabase } from './lib/mongodb.js';
 import historyRoutes from './routes/historyRoutes.js';
 import 'dotenv/config';
-import axios from 'axios';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -36,20 +35,6 @@ app.options('*', cors(corsOptions));
 
 app.use(express.json());
 app.use('/api/history', historyRoutes);
-
-// Proxy route for OpenWeatherMap API
-app.get('/api/weather', async (req, res) => {
-  try {
-    const lat = req.query.lat;
-    const lon = req.query.lon;
-    const apiUrl = `https://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${lat}&lon=${lon}&appid=${process.env.OPENWEATHERMAP_API_KEY}`;
-    
-    const response = await axios.get(apiUrl);
-    res.send(response.data);
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-});
 
 const startServer = async () => {
   try {
