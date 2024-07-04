@@ -11,7 +11,6 @@ const whitelist = [
   'http://localhost:59444',
   'http://localhost:3000',
   'https://back-angular-e157d9448e88.herokuapp.com',
-  'https://back-angular-e157d9448e88.herokuapp.com/',
  'https://anais-mouelhi.github.io',
   'https://anais-mouelhi.github.io/Angular_localisation_app'
 ];
